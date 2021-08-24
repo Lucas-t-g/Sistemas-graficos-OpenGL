@@ -114,58 +114,23 @@ void display(void){
    glDepthFunc(GL_LEQUAL);
    glClearDepth(1000.0f);
    glLoadIdentity();
+   RotateY(10);
+
    RotateZ(30);
-   // float x_desloc = -2.0, y_desloc = -1.5;
-   // glBegin(GL_LINE_LOOP);
-   //    glVertex3f(x_desloc+ (-1.0), y_desloc+ (0.0), -2.0); // C
-   //    glVertex3f(x_desloc+ (-1.0), y_desloc+ (3.0), -2.0); // B
-   //    glVertex3f(x_desloc+ (2.0), y_desloc+ (5.0), -2.0); // A
-   //    glVertex3f(x_desloc+ (5.0), y_desloc+ (3.0), -2.0); // F
-   //    glVertex3f(x_desloc+ (5.0), y_desloc+ (0.0), -2.0); // E
-   //    glVertex3f(x_desloc+ (2.0), y_desloc+ (-2.0), -2.0); // D
-   //    glVertex3f(x_desloc+ (-1.0), y_desloc+ (0.0), -2.0); // C
-
-   //    glVertex3f(x_desloc+ (-1.0), y_desloc+ (0.0), -3.0); // C
-   //    glVertex3f(x_desloc+ (2.0), y_desloc+ (-2.0), -3.0); // D
-   //    glVertex3f(x_desloc+ (5.0), y_desloc+ (0.0), -3.0); // E
-   //    glVertex3f(x_desloc+ (5.0), y_desloc+ (3.0), -3.0); // F
-   //    glVertex3f(x_desloc+ (2.0), y_desloc+ (5.0), -3.0); // A
-   //    glVertex3f(x_desloc+ (-1.0), y_desloc+ (3.0), -3.0); // B
-   //    glVertex3f(x_desloc+ (-1.0), y_desloc+ (0.0), -3.0); // C
-   // glEnd();
-
-   // glPushMatrix();
-   // glTranslatef(0.0, 0.0, -1.0);
-   // glutWireCube(7.0);
-   // glPopMatrix();
-
-   // glPushMatrix();
-   // glTranslatef(0.0, 0.0, -1.0);
-   // glutWireCube(6.0);
-   // glPopMatrix();
-
-   const int sides = 200;  // The amount of segment to create the circle
-   const double radius = 3.5; // The radius of the circle
-
-   glBegin(GL_LINE_LOOP);
-
-   for (int a = 0; a < 360; a += 360 / sides)
-   {
-      double heading = a * 3.1415926535897932384626433832795 / 180;
-      glVertex2d(cos(heading) * radius, sin(heading) * radius);
-   }
-
-   glEnd();
-
    const int sides2 = 6;  // The amount of segment to create the circle
    const double radius2 = 3.5; // The radius of the circle
 
    glBegin(GL_LINE_LOOP);
 
-   for (int a = 0; a < 360; a += 360 / sides2)
+   for (int a = 0; a <= 360; a += 360 / sides2)
    {
       double heading = a * 3.1415926535897932384626433832795 / 180;
-      glVertex2d(cos(heading) * radius2, sin(heading) * radius2);
+      glVertex3f(cos(heading) * radius2, sin(heading) * radius2, 0);
+   }
+   for (int a = 0; a <= 360; a += 360 / sides2)
+   {
+      double heading = a * 3.1415926535897932384626433832795 / 180;
+      glVertex3f(cos(heading) * radius2, sin(heading) * radius2, -1);
    }
 
    glEnd();
@@ -180,7 +145,7 @@ void reshape(int w, int h) {
    // Frustum(-20.0, 20.0, -20.0, 20.0, 1.5, 40.0);
 
    // glOrtho(-10.0, 10.0, -10.0, 10.0, -1.5, 200.0);
-   Ortho(-10.0, 10.0, -10.0, 10.0, -1.5, 200.0);
+   Ortho(-10.0, 10.0, -10.0, 10.0, -5, 200.0);
    glMatrixMode(GL_MODELVIEW);
 }
 
