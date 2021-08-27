@@ -117,8 +117,8 @@ void linha(float x1, float y1, float z1, float x2, float y2, float z2, float esp
 
 void hexagono3d(){
    float z1 = -5, z2 = -7;
-   const int sides2 = 6;  // The amount of segment to create the circle
-   const double radius2 = 3.5; // The radius of the circle
+   const int sides = 6;  // The amount of segment to create the circle
+   const double radius = 3.5; // The radius of the circle
 
    // Translate(0, 0, +(z1 + (z2-z1)/2) );
    // RotateY(0);
@@ -128,11 +128,11 @@ void hexagono3d(){
    glColor3f(0.0, 0.0, 1.0);
 
    glBegin(GL_QUAD_STRIP); // faces laterais
-   for (int a = 0; a <= 360; a += 360 / sides2)
+   for (int a = 0; a <= 360; a += 360 / sides)
    {
       double heading = a * 3.1415926535897932384626433832795 / 180;
-      glVertex3f(cos(heading) * radius2, sin(heading) * radius2, z1);
-      glVertex3f(cos(heading) * radius2, sin(heading) * radius2, z2);
+      glVertex3f(cos(heading) * radius, sin(heading) * radius, z1);
+      glVertex3f(cos(heading) * radius, sin(heading) * radius, z2);
    }
    glEnd();
 
@@ -140,10 +140,10 @@ void hexagono3d(){
    glColor3f(0.0, 0.0, 0.5);
    // glPopMatrix();
    glBegin(GL_POLYGON); // face da frente
-   for (int a = 0; a <= 360; a += 360 / sides2)
+   for (int a = 0; a <= 360; a += 360 / sides)
    {
       double heading = a * 3.1415926535897932384626433832795 / 180;
-      glVertex3f(cos(heading) * radius2, sin(heading) * radius2, z1);
+      glVertex3f(cos(heading) * radius, sin(heading) * radius, z1);
    }
    glEnd();
 
@@ -151,10 +151,10 @@ void hexagono3d(){
    glColor3f(0.5, 0.0, 0.5);
    // glPopMatrix();
    glBegin(GL_POLYGON); // face da trás
-   for (int a = 0; a <= 360; a += 360 / sides2)
+   for (int a = 0; a <= 360; a += 360 / sides)
    {
       double heading = a * 3.1415926535897932384626433832795 / 180;
-      glVertex3f(cos(heading) * radius2, sin(heading) * radius2, z2);
+      glVertex3f(cos(heading) * radius, sin(heading) * radius, z2);
    }
    glEnd();
 }
