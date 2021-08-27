@@ -106,6 +106,54 @@ void Ortho(float l, float r, float b, float t, float n, float f){
    glMultMatrixf((float *) matriz);
 }
 
+void linha(float x1, float y1, float z1, float x2, float y2, float z2, float espessura){
+   glLineWidth(espessura);
+   glBegin(GL_LINES);
+      glVertex3f(x1, y1, z1);
+      glVertex3f(x2, y2, z2);
+   glEnd();
+}
+
+void hexagono3d(){
+   RotateY(10);
+   RotateZ(30);
+   glColor3f(0.0, 0.0, 1.0);
+
+   float z1 = -3, z2 = -5;
+   const int sides2 = 6;  // The amount of segment to create the circle
+   const double radius2 = 3.5; // The radius of the circle
+   glBegin(GL_QUAD_STRIP); // faces laterais
+   for (int a = 0; a <= 360; a += 360 / sides2)
+   {
+      double heading = a * 3.1415926535897932384626433832795 / 180;
+      glVertex3f(cos(heading) * radius2, sin(heading) * radius2, z1);
+      glVertex3f(cos(heading) * radius2, sin(heading) * radius2, z2);
+   }
+   glEnd();
+
+   // // glPushMatrix();
+   // glColor3f(0.0, 0.0, 0.5);
+   // // glPopMatrix();
+   // glBegin(GL_POLYGON); // face da frente
+   // for (int a = 0; a <= 360; a += 360 / sides2)
+   // {
+   //    double heading = a * 3.1415926535897932384626433832795 / 180;
+   //    glVertex3f(cos(heading) * radius2, sin(heading) * radius2, z1);
+   // }
+   // glEnd();
+
+   // // glPushMatrix();
+   // glColor3f(0.5, 0.0, 0.5);
+   // // glPopMatrix();
+   // glBegin(GL_POLYGON); // face da trás
+   // for (int a = 0; a <= 360; a += 360 / sides2)
+   // {
+   //    double heading = a * 3.1415926535897932384626433832795 / 180;
+   //    glVertex3f(cos(heading) * radius2, sin(heading) * radius2, z2);
+   // }
+   // glEnd();
+}
+
 void display(void){
    glClearColor(1.0, 1.0, 1.0, 0.0);
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -113,27 +161,20 @@ void display(void){
    glEnable(GL_DEPTH_TEST);
    glDepthFunc(GL_LEQUAL);
    glClearDepth(1000.0f);
+   // eixo x
+   glColor3f(1, 0, 0);
+   linha(-40, 0, 0, 40, 0, 0, 2);
+   // eixo y
+   glColor3f(0, 1, 0);
+   linha(0, -40, 0, 0, 40, 0, 2);
+   // eixo z
+   glColor3f(0, 0, 1);
+   linha(0, 0, -40, 0, 0, 40, 2);
+
+
    glLoadIdentity();
-   RotateY(10);
-
-   RotateZ(30);
-   const int sides2 = 6;  // The amount of segment to create the circle
-   const double radius2 = 3.5; // The radius of the circle
-
-   glBegin(GL_LINE_LOOP);
-
-   for (int a = 0; a <= 360; a += 360 / sides2)
-   {
-      double heading = a * 3.1415926535897932384626433832795 / 180;
-      glVertex3f(cos(heading) * radius2, sin(heading) * radius2, 0);
-   }
-   for (int a = 0; a <= 360; a += 360 / sides2)
-   {
-      double heading = a * 3.1415926535897932384626433832795 / 180;
-      glVertex3f(cos(heading) * radius2, sin(heading) * radius2, -1);
-   }
-
-   glEnd();
+   
+   hexagono3d();
 
    glFlush();
 }
