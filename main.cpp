@@ -73,37 +73,37 @@ void Translate(float dx, float dy, float dz) {
 }
 
 void Frustum(float l, float r, float b, float t, float n, float f){
-    float matriz[4][4] = {{0,0,0,0},
-                      {0,0,0,0},
-                      {0,0,0,0},
-                      {0,0,0,0}};
+   float matriz[4][4] = {{0,0,0,0},
+                     {0,0,0,0},
+                     {0,0,0,0},
+                     {0,0,0,0}};
 
-    matriz[0][0] = 2*n/(r-l);
-    matriz[1][1] = 2*n/(t-b);
-    matriz[2][0] = (r+l)/(r-l);
-    matriz[2][1] = (t+b)/(t-b);
-    matriz[2][2] = -(f+n)/(f-n);
-    matriz[2][3] = -1;
-    matriz[3][2] = -2*f*n/(f-n);
+   matriz[0][0] = 2*n/(r-l);
+   matriz[1][1] = 2*n/(t-b);
+   matriz[2][0] = (r+l)/(r-l);
+   matriz[2][1] = (t+b)/(t-b);
+   matriz[2][2] = -(f+n)/(f-n);
+   matriz[2][3] = -1;
+   matriz[3][2] = -2*f*n/(f-n);
 
-    glMultMatrixf((float *) matriz);
+   glMultMatrixf((float *) matriz);
 }
 
 void Ortho(float l, float r, float b, float t, float n, float f){
-    float matriz[4][4] = {{0,0,0,0},
-                      {0,0,0,0},
-                      {0,0,0,0},
-                      {0,0,0,0}};
+   float matriz[4][4] = {{0,0,0,0},
+                     {0,0,0,0},
+                     {0,0,0,0},
+                     {0,0,0,0}};
 
-    matriz[0][0] = 2/(r-l);
-    matriz[1][1] = 2/(t-b);
-    matriz[2][2] = -2/(f-n);
-    matriz[3][0] = -(r+l)/(r-l);
-    matriz[3][1] = -(t+b)/(t-b);
-    matriz[3][2] = -(f+n)/(f-n);
-    matriz[3][3] = 1;
+   matriz[0][0] = 2/(r-l);
+   matriz[1][1] = 2/(t-b);
+   matriz[2][2] = -2/(f-n);
+   matriz[3][0] = -(r+l)/(r-l);
+   matriz[3][1] = -(t+b)/(t-b);
+   matriz[3][2] = -(f+n)/(f-n);
+   matriz[3][3] = 1;
 
-    glMultMatrixf((float *) matriz);
+   glMultMatrixf((float *) matriz);
 }
 
 void display(void){
